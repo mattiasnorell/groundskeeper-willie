@@ -1,5 +1,5 @@
 # Groundskeeper Willie
-## Hardware based zone selector for robot lawn movers
+## Hardware based zone selector for robot lawn mowers
 
 ### Hardware
 * Raspberry Pi
