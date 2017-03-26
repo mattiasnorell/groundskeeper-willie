@@ -15,9 +15,20 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-	imports: [ BrowserModule, RouterModule.forRoot(appRoutes)],
-	declarations: [AppComponent, ZoneDaySelectorComponent, LogComponent, CurrentStatusComponent, SettingsComponent],
-	bootstrap: [AppComponent]
+	imports: [ 
+		BrowserModule, 
+		RouterModule.forRoot(appRoutes)
+	],
+	declarations: [
+		AppComponent, 
+		ZoneDaySelectorComponent, 
+		LogComponent, 
+		CurrentStatusComponent, 
+		SettingsComponent
+	],
+	bootstrap: [
+		AppComponent
+	]
 })
 
 export class AppModule {}
