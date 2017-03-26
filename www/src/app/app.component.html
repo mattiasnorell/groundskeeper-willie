@@ -1,3 +1,9 @@
 <h1>Groundskeeper Willy</h1>
 
-<zone-day-selector *ngFor="let zone of zones" [title]="zone"></zone-day-selector>
+<nav>
+      <a routerLink="/" routerLinkActive="active">Status</a>
+      <a routerLink="/settings" routerLinkActive="active">Inställningar</a>
+      <a routerLink="/log" routerLinkActive="active">Log</a>
+    </nav>
+
+<router-outlet></router-outlet>
