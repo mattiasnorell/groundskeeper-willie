@@ -1,17 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { LogService } from './log.service';
+import { LogItem } from './logitem.model';
 
 @Component({
 	selector:'log',
+	providers: [LogService],
 	templateUrl: './log.component.html',
 	styleUrls: ['./log.component.css']
 })
 
 export class LogComponent {
-	logItems: String[] = [];
+	logItems: LogItem[] = null;
 
-	constructor(){
-		for(let i = 1; i <= 10; i++){
-			this.logItems.push("Log item " + i);
-		}
-	}	
+	constructor(private logService: LogService){}
+		
+	ngOnInit(): void{
+		this.logService.getAll().then(response => this.logItems = response);
+	}
 } 

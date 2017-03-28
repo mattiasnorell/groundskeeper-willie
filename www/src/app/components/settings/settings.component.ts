@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SettingsService } from './settings.service';
+import { Zone } from './zone.model';
 
 @Component({
 	selector:'settings',
+	providers: [SettingsService],
 	templateUrl: './settings.component.html',
 	styleUrls: ['./settings.component.css']
 })
 
 export class SettingsComponent {
-	zones: String[] = ["zone 0"];
+	zones: Zone[] = [];
 
-	constructor(){
-		this.zones.push("zone 1");
-		this.zones.push("zone 2");
+	constructor(private settingsService: SettingsService){ }
+
+	ngOnInit(){
+		this.settingsService.getAll().then(response => this.zones = response);
 	}
 } 

@@ -1,0 +1,25 @@
+{
+    "lastUpdate": "1490690460875",
+    "logs":[
+        {
+            "timestamp": "1490690460875",
+            "message": "En rad i loggfilen 1"
+        },
+        {
+            "timestamp": "819898200",
+            "message": "En rad i loggfilen 2"
+        },
+        {
+            "timestamp": "819898200",
+            "message": "En rad i loggfilen 3"
+        },
+        {
+            "timestamp": "819898200",
+            "message": "En rad i loggfilen 4"
+        },
+        {
+            "timestamp": "819898200",
+            "message": "En rad i loggfilen 5"
+        }
+    ]
+}

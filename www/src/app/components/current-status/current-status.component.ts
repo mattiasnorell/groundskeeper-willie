@@ -1,19 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CurrentStatusService } from './current-status.service';
+import {CurrentStatus } from './current-status.model';
 
 @Component({
 	selector:'current-status',
+	providers: [CurrentStatusService],
 	templateUrl: './current-status.component.html',
 	styleUrls: ['./current-status.component.css']
 })
 
-export class CurrentStatusComponent {
-	status: String;
+export class CurrentStatusComponent implements OnInit{
+	status: String = "Laddar...";
 
-	constructor(){
-		this.status = "Ute och kör";
-	}
+	constructor(private currentStatusService: CurrentStatusService){ }
 
-	changeStatus(){
-		this.status = "Står och vilar";
+	ngOnInit(): void{
+		this.currentStatusService.getStatus().then(response => 	this.status = response.status);
 	}
 } 

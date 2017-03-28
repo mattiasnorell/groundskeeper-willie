@@ -5,6 +5,10 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
+    globals: [
+      'zone.js',
+      'reflect-metadata'
+    ],
     'vendor': './src/vendor.ts',
     'app': './src/main.ts'
   },

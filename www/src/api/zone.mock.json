@@ -1,0 +1,13 @@
+{
+    "zones":[
+        {
+            "name":"Zon 1"
+        },
+        {
+            "name":"Zon 2"
+        },
+        {
+            "name":"Zon 3"
+        }
+    ]
+}
