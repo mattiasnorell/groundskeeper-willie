@@ -1,7 +1,11 @@
-<nav>
-    <a routerLink="/" routerLinkActive="active">Status</a>
-    <a routerLink="/settings" routerLinkActive="active">Inställningar</a>
-    <a routerLink="/log" routerLinkActive="active">Log</a>
-</nav>
+<header>
+    <nav>
+        <a routerLink="/" routerLinkActive="active">Status</a>
+        <a routerLink="/settings" routerLinkActive="active">Inställningar</a>
+        <a routerLink="/log" routerLinkActive="active">Log</a>
+    </nav>
+</header>
 
-<router-outlet></router-outlet>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>

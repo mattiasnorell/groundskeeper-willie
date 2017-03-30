@@ -6,7 +6,7 @@ import { Zone } from './zone.model';
 	selector:'settings',
 	providers: [SettingsService],
 	templateUrl: './settings.component.html',
-	styleUrls: ['./settings.component.css']
+	styleUrls: ['./settings.component.less']
 })
 
 export class SettingsComponent {

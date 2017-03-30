@@ -6,7 +6,6 @@ var helpers = require('./helpers');
 module.exports = {
   entry: {
     globals: [
-      'zone.js',
       'reflect-metadata'
     ],
     'vendor': './src/vendor.ts',
@@ -14,11 +13,19 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js','.less']
   },
 
   module: {
     rules: [
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: "style-loader",
+          loader: ['css-loader', 'less-loader'],
+        })
+      },
       {
         test: /\.ts$/,
         loaders: [
@@ -35,16 +42,6 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
-      },
-      {
-        test: /\.css$/,
-        exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
-      },
-      {
-        test: /\.css$/,
-        include: helpers.root('src', 'app'),
-        loader: 'raw-loader'
       }
     ]
   },

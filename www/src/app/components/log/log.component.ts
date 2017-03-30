@@ -6,7 +6,7 @@ import { LogItem } from './logitem.model';
 	selector:'log',
 	providers: [LogService],
 	templateUrl: './log.component.html',
-	styleUrls: ['./log.component.css']
+	styleUrls: ['./log.component.less']
 })
 
 export class LogComponent {
