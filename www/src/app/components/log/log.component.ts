@@ -1,20 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LogService } from './log.service';
 import { LogItem } from './logitem.model';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
 	selector:'log',
-	providers: [LogService],
 	templateUrl: './log.component.html',
-	styleUrls: ['./log.component.less']
+	styles: ['./log.component.css']
 })
 
 export class LogComponent {
-	logItems: LogItem[] = null;
+	logItems: FirebaseListObservable<LogItem[]>;
 
-	constructor(private logService: LogService){}
+	constructor(private af:AngularFire){}
 		
 	ngOnInit(): void{
-		this.logService.getAll().then(response => this.logItems = response);
+		this.logItems = this.af.database.list("/log");
 	}
 } 

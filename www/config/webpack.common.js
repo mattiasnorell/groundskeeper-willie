@@ -6,25 +6,23 @@ var helpers = require('./helpers');
 module.exports = {
   entry: {
     globals: [
-      'reflect-metadata'
     ],
     'vendor': './src/vendor.ts',
     'app': './src/main.ts'
   },
 
   resolve: {
-    extensions: ['.ts', '.js','.less']
+    extensions: ['.ts', '.js','.css']
   },
 
   module: {
     rules: [
       {
-        test: /\.less$/,
-        exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: "style-loader",
-          loader: ['css-loader', 'less-loader'],
-        })
+        test: /\.css$/, 
+        loader: [ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader'] }),
+          'css-loader',
+          'sass-loader'
+      ],
       },
       {
         test: /\.ts$/,

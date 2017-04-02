@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from './settings.service';
 import { Zone } from './zone.model';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
 	selector:'settings',
-	providers: [SettingsService],
 	templateUrl: './settings.component.html',
-	styleUrls: ['./settings.component.less']
+	styles: ['./settings.component.css']
 })
 
 export class SettingsComponent {
-	zones: Zone[] = [];
+  	zones: FirebaseListObservable<Zone[]>;
 
-	constructor(private settingsService: SettingsService){ }
+	constructor(private af:AngularFire){ }
 
-	ngOnInit(){
-		this.settingsService.getAll().then(response => this.zones = response);
+	ngOnInit():void{
+		this.zones = this.af.database.list('/Zones');
 	}
 } 

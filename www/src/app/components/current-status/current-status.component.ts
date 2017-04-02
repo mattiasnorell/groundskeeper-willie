@@ -6,7 +6,7 @@ import {CurrentStatus } from './current-status.model';
 	selector:'current-status',
 	providers: [CurrentStatusService],
 	templateUrl: './current-status.component.html',
-	styleUrls: ['./current-status.component.less']
+	styles: ['./current-status.component.css']
 })
 
 export class CurrentStatusComponent implements OnInit{
