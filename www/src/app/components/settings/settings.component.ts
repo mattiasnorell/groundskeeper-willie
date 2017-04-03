@@ -14,6 +14,10 @@ export class SettingsComponent {
 	constructor(private af:AngularFire){ }
 
 	ngOnInit():void{
-		this.zones = this.af.database.list('/Zones');
+		this.zones = this.af.database.list('/zones');
 	}
-} 
+
+	createZone(){
+		this.af.database.list('/zones').push({name:"Zon"});
+	}
+}

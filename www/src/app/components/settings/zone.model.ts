@@ -1,3 +1,4 @@
 export class Zone{
-    name: String
+    $key: String;
+    name: String;
 }

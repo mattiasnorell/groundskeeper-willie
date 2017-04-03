@@ -1,2 +1,3 @@
+<zone-day-selector *ngFor="let zone of zones | async" [zone]="zone"></zone-day-selector>
 
-<zone-day-selector *ngFor="let zone of zones | async" [title]="zone.name"></zone-day-selector>
+<button (click)="createZone()">Create</button>

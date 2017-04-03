@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Zone } from './zone.model';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Injectable()
 export class SettingsService{
-    private apiUrl:string = "/src/api/zone.mock.json";
 
-    constructor(private http:Http){}
+    private items: FirebaseListObservable<Zone[]>;
 
-    getAll(): Promise<Zone[]>{
-        return this.http.get(this.apiUrl).toPromise().then(response => response.json().zones as Zone[] );
+    constructor(private af:AngularFire){
+        this.items = this.af.database.list("/schedule");
     }
 }
