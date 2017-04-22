@@ -5,10 +5,10 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    globals: [
-    ],
+    globals: [],
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'app': './src/main.ts',
+    'style': './src/scss/main.scss'
   },
 
   resolve: {
@@ -23,6 +23,10 @@ module.exports = {
           'css-loader',
           'sass-loader'
       ],
+      },
+      { // sass / scss loader for webpack
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
       },
       {
         test: /\.ts$/,

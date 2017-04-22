@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Zone } from '../settings/zone.model';
+import { Zone } from '../../../models/zone.model';
 
 @Component({
 	selector:'zone-day-selector',
@@ -13,9 +13,11 @@ export class ZoneDaySelectorComponent {
 	@Input() zone: Zone;
 	@Output() update = new EventEmitter();
 
-	constructor(){ }
+	constructor(){ 
+	
+	}
 
 	setDay(day:String){
-		this.update.emit({zone: this.zone, day: day});
+		this.update.emit(day);
 	}
 } 

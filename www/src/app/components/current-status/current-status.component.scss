@@ -1,0 +1,21 @@
+current-status {
+    .status-bar{
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 46px;
+        margin-top: -23px;
+        text-align: center;
+
+        span{
+            font-family: $font-family-serif;
+            font-size: 36px;
+            background-color: #fff;
+            padding: 3px 8px 3px 8px;
+        }
+    }
+
+    img{
+        max-width: 100%;
+    }
+}

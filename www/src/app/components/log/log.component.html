@@ -1,6 +1,7 @@
-<h3>Log</h3>
 <ul>
-    <li *ngFor="let item of logItems | async; let isOdd = odd; let isEven = even;" [class.odd] ="isOdd" [class.even]="isEven">
-        {{item.timestamp | date:"yy/MM/dd hh:mm"}} - {{item.message}}
+    <li *ngFor="let item of logItems; let isOdd = odd; let isEven = even;" [class.odd] ="isOdd" [class.even]="isEven">
+        <div class="timestamp"><span>{{item.timestamp | date:"yy/MM/dd hh:mm"}}</span></div>
+
+        <div class="log-item">{{item.message}}</div>
     </li>
 </ul>

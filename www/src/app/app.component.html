@@ -1,11 +1,22 @@
-<header>
-    <nav>
-        <a routerLink="/" routerLinkActive="active">Status</a>
-        <a routerLink="/settings" routerLinkActive="active">Inställningar</a>
-        <a routerLink="/log" routerLinkActive="active">Log</a>
-    </nav>
-</header>
-
 <div class="content">
     <router-outlet></router-outlet>
 </div>
+
+<footer>
+    <nav>
+        <ul>
+            <li [routerLinkActive]="['active']">
+                <a routerLink="/status" routerLinkActive="active">Status</a>
+            </li>
+            <li [routerLinkActive]="['active']">
+                <a routerLink="/map" routerLinkActive="active">Karta</a>
+            </li>
+            <li [routerLinkActive]="['active']">
+                <a routerLink="/settings" routerLinkActive="active">Inställningar</a>
+            </li>
+            <li [routerLinkActive]="['active']">
+                <a routerLink="/log" routerLinkActive="active">Log</a>
+            </li>
+        </ul>
+    </nav>
+</footer>

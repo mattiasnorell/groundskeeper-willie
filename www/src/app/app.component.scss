@@ -1,0 +1,59 @@
+
+html, body{
+    padding:0;
+    margin:0;
+    background-color: #fff;
+}
+
+groundskeeper-willy{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+
+    footer{
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        height: $footer-height;
+        background-color: lightblue;
+
+        nav{
+            ul{
+                
+                width: 100%;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                
+                li{
+                    float: left;
+                    width: 25%;
+                    text-align: center;
+                    height: $footer-height;
+                    line-height: $footer-height;
+
+                    &.active{
+                        height: 47px;
+                        border-bottom: 3px solid #fff;
+                    }
+
+                    a{
+                        font-family: $font-family-serif;
+                        font-size: 16px;
+                        line-height: 24px;
+                        text-decoration: none;
+                        color: #fff;
+                    
+                        &.active{
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

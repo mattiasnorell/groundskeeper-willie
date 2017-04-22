@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Zone } from './zone.model';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Zone } from '../../../models/zone.model';
+import { ScheduleDay } from '../../../models/scheduleDay.model';
+import { SettingsService } from './settings.service';
 
 @Component({
 	selector:'settings',
+	providers: [SettingsService],
 	templateUrl: './settings.component.html',
 	styles: ['./settings.component.css']
 })
 
 export class SettingsComponent {
-  	zones: FirebaseListObservable<Zone[]>;
+  	zones: Zone[];
+	schedule: ScheduleDay[];
 
-	constructor(private af:AngularFire){ }
+	constructor(private settingsService:SettingsService){
+
+	 }
 
 	ngOnInit():void{
-		this.zones = this.af.database.list('/zones');
+		this.settingsService.getZones().then((result) => {
+			console.log(result)
+			this.zones = result;
+		});
 	}
 
 	createZone(){
-		this.af.database.list('/zones').push({name:"Zon"});
+		//this.af.database.list('/zones').push({name:"Zon"});
+	}
+
+	selectorUpdated(day:ScheduleDay, zone:Zone){
+		
 	}
 }
