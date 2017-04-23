@@ -1,3 +1,3 @@
 export class CurrentStatus {
-  status: string;
+  status: Number;
 }
