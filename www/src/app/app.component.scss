@@ -1,7 +1,5 @@
 
 html, body{
-    padding:0;
-    margin:0;
     background-color: #fff;
 }
 
@@ -9,7 +7,11 @@ groundskeeper-willy{
     position: relative;
     display: block;
     margin: 0 auto;
-    width: 400px;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: 768px;
+    }
 
     footer{
         position: fixed;
@@ -38,11 +40,16 @@ groundskeeper-willy{
 
                     a{
                         font-family: $font-family-serif;
-                        font-size: 16px;
+                        font-size: 14px;
                         line-height: 24px;
                         text-decoration: none;
                         color: #fff;
                     
+                        @media (min-width: 768px) {
+                            font-size: 16px;
+                            line-height: 24px;
+                        }
+
                         &.active{
                             font-weight: bold;
                             background: #fff;

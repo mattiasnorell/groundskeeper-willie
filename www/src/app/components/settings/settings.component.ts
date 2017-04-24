@@ -7,7 +7,7 @@ import { SettingsService } from './settings.service';
 	selector:'settings',
 	providers: [SettingsService],
 	templateUrl: './settings.component.html',
-	styles: ['./settings.component.css']
+	styles: ['./settings.component.scss']
 })
 
 export class SettingsComponent {
@@ -15,21 +15,12 @@ export class SettingsComponent {
 	schedule: ScheduleDay[];
 
 	constructor(private settingsService:SettingsService){
-
-	 }
+		
+	}
 
 	ngOnInit():void{
 		this.settingsService.getZones().then((result) => {
-			console.log(result)
 			this.zones = result;
 		});
-	}
-
-	createZone(){
-		//this.af.database.list('/zones').push({name:"Zon"});
-	}
-
-	selectorUpdated(day:ScheduleDay, zone:Zone){
-		
 	}
 }

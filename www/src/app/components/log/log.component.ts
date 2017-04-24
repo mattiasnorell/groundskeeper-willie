@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LogItem } from './logitem.model';
 import { LogService } from './log.service';
+import {FirebaseListObservable} from 'angularfire2';
 
 @Component({
 	selector:'log-list',
@@ -10,14 +11,11 @@ import { LogService } from './log.service';
 })
 
 export class LogComponent {
-	logItems: LogItem[];
+	logItems: FirebaseListObservable<LogItem[]>;
 
 	constructor(private logService:LogService){}
 		
 	ngOnInit(): void{
-		this.logService.getAll().then((result) => {
-			console.log(result);
-			this.logItems = result;
-		});
+		this.logItems = this.logService.getAll();
 	}
 } 

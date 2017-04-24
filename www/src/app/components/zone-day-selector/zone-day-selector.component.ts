@@ -4,7 +4,7 @@ import { Zone } from '../../../models/zone.model';
 @Component({
 	selector:'zone-day-selector',
 	templateUrl: './zone-day-selector.component.html',
-	styles: ['./zone-day-selector.component.css']
+	styles: ['./zone-day-selector.component.scss']
 })
 
 export class ZoneDaySelectorComponent {

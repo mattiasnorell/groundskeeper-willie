@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Zone } from '../../../models/zone.model';
 import { Http } from '@angular/http';
+import { Zone } from '../../../models/zone.model';
 import { ScheduleDay } from '../../../models/scheduleDay.model';
 
 @Injectable()

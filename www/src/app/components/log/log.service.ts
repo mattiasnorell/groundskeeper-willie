@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { LogItem } from './logitem.model';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 @Injectable()
 export class LogService{
-    private apiUrl:string = "/src/api/log.mock.json";
+    
+    constructor(private af: AngularFire){}
 
-    constructor(private http:Http){}
-
-    getAll(): Promise<LogItem[]>{
-        return this.http.get(this.apiUrl).toPromise().then(response => response.json().logs as LogItem[] );
+    getAll(): FirebaseListObservable<LogItem[]>{
+        return this.af.database.list('/log', {
+           query: {
+                limitToLast: 10,
+                orderByKey: true
+           } 
+        });
     }
 }

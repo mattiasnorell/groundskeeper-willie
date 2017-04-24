@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, AfterContentInit  , ViewChild,ElementRef } from '@angular/core';
 import { MapService } from './map.service';
 import {MapPosition } from './mapPosition.model';
+import {FirebaseObjectObservable} from 'angularfire2';
 
 @Component({
 	selector:'map',
@@ -13,31 +14,66 @@ export class MapComponent implements OnInit {
 	@ViewChild("mapCanvas") mapCanvas:ElementRef; 
 
 	position: MapPosition = null;
+	service: FirebaseObjectObservable<MapPosition>;
+	private canvasWidth: number = 350;
+	private canvasHeight: number = 550;
 
 	constructor(private mapService: MapService){ }
 
+	convertGpsToPixels(gpsCoordinates: MapPosition):MapPosition{
+		
+		var topLatitude:number = 59.322533;
+		var bottomLatitude:number = 59.322048;
+		var latitudeDiff = topLatitude - bottomLatitude;
+	
+		var leftLongitude:number = 13.456358;
+		var rightLongitude:number = 13.457133;
+		var longitudeDiff:number = rightLongitude - leftLongitude;
+		
+		var iconLatitude:number  = gpsCoordinates.latitude;
+		var iconLatitudeDiff:number = topLatitude - iconLatitude;
+		var iconLatitudePosition:number = (iconLatitudeDiff / latitudeDiff) * this.canvasWidth;
+	
+		var iconLongitude:number = gpsCoordinates.longitude;
+		var iconLongitudeDiff: number = rightLongitude - iconLongitude;
+		var iconLongitudePosition:number = (iconLongitudeDiff / longitudeDiff) * this.canvasHeight;
+	
+		var positions = new MapPosition();
+		positions.latitude = Math.floor(iconLatitudePosition);
+		positions.longitude = Math.floor(iconLongitudePosition);
+		
+		return positions;
+	}
+
 	ngOnInit(): void{
-		this.mapService.getStatus().then(response => this.position = response);
+		this.service = this.mapService.getStatus();	
 	}
 
 	ngAfterContentInit () {
+
 		let canvas: HTMLCanvasElement = this.mapCanvas.nativeElement;
 		let context: CanvasRenderingContext2D = canvas.getContext("2d");
 		let image = new Image();
-
-		image.onload = () => {
-			canvas.width = 400;
-			canvas.height = 600;
-			context.drawImage(image, 0, 0, 400, 600);
-
-			icon.src = "/src/img/worx.png";
-		}
-
 		let icon = new Image();
-		icon.onload = () => {
-			context.drawImage(icon, this.position.latitude, this.position.longitude);
-		}
+
+		this.service.subscribe(obj => {
+			var positionInPixels = this.convertGpsToPixels(obj);
+			
+			image.onload = () => {
+				canvas.width = this.canvasWidth;
+				canvas.height = this.canvasHeight;
+				context.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight);
+
+				icon.src = "/src/img/worx.png";
+			}
 		
-		image.src = "/src/img/map.png";
+			icon.onload = () => {
+				context.drawImage(icon, positionInPixels.latitude, positionInPixels.longitude);
+			}
+			
+			image.src = "/src/img/map.png";
+
+		});
+
 	}
 } 

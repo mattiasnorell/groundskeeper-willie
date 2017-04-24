@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CurrentStatusService } from './current-status.service';
 import {CurrentStatus } from './current-status.model';
+import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
 
 @Component({
 	selector:'current-status',
 	providers: [CurrentStatusService],
 	templateUrl: './current-status.component.html',
-	styles: ['./current-status.component.css']
+	styles: ['./current-status.component.scss']
 })
 
 export class CurrentStatusComponent implements OnInit{
@@ -25,8 +26,10 @@ export class CurrentStatusComponent implements OnInit{
 	constructor(private currentStatusService: CurrentStatusService){ }
 
 	ngOnInit(): void{
-		this.currentStatusService.getStatus().then(response => 	{
-			this.status = response.status;
+		let service = this.currentStatusService.getStatus();
+
+		service.subscribe(value => {
+			this.status = value.status;
 		});
 	}
 } 
