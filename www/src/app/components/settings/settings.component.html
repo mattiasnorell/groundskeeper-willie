@@ -1,1 +1,10 @@
-<zone-day-selector *ngFor="let zone of zones" [zone]="zone"></zone-day-selector>
+<zone-day-selector *ngFor="let zone of zones | async" [zone]="zone"></zone-day-selector>
+
+<h3 class="text-center">Schema</h3>
+<table style="width:100%">
+    <tr *ngFor="let day of schedule | async">
+        <td>{{ dayNames[day.day] }}</td>
+        <td>{{ day.zone }}</td>
+        <td class="text-right">Edit</td>
+    </tr>
+</table>

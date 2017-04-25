@@ -2,25 +2,26 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Zone } from '../../../models/zone.model';
 import { ScheduleDay } from '../../../models/scheduleDay.model';
+import {AngularFire, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2';
 
 @Injectable()
 export class SettingsService{
 
-    private items: Zone[];
-
-    private apiUrl:string = "/src/api/zone.mock.json";
-
-    constructor(private http:Http){}
+    constructor(private af:AngularFire){}
     
-    getZones():Promise<Zone[]>{
-        return this.http.get(this.apiUrl).toPromise().then(response => response.json() as Zone[]);
+    getZones():FirebaseListObservable<Zone[]>{
+        return this.af.database.list("/zones");
     }
 
-    getSchedule():ScheduleDay[]{
-        return null;
+    getSchedule(orderBy: string = "day"):FirebaseListObservable<ScheduleDay[]>{
+         return this.af.database.list("/schedule", {
+             query: {
+                 orderByChild: orderBy
+             }
+         });
     }
 
-    updateDayForZone(id: string, zoneId: string, day:Number){
-        console.log(id, day);
+    updateDayForZone(day:Number, zoneId: string){
+        this.af.database.object("/schedule/" + day).update({zone: zoneId});
     }
 }

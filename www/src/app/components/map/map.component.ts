@@ -18,24 +18,24 @@ export class MapComponent implements OnInit {
 	private canvasWidth: number = 350;
 	private canvasHeight: number = 550;
 
+	private topLatitude:number = 59.322533;
+	private bottomLatitude:number = 59.322048;
+	private leftLongitude:number = 13.456358;
+	private rightLongitude:number = 13.457133;
+
 	constructor(private mapService: MapService){ }
 
 	convertGpsToPixels(gpsCoordinates: MapPosition):MapPosition{
 		
-		var topLatitude:number = 59.322533;
-		var bottomLatitude:number = 59.322048;
-		var latitudeDiff = topLatitude - bottomLatitude;
-	
-		var leftLongitude:number = 13.456358;
-		var rightLongitude:number = 13.457133;
-		var longitudeDiff:number = rightLongitude - leftLongitude;
+		var latitudeDiff = this.topLatitude - this.bottomLatitude;
+		var longitudeDiff:number = this.rightLongitude - this.leftLongitude;
 		
 		var iconLatitude:number  = gpsCoordinates.latitude;
-		var iconLatitudeDiff:number = topLatitude - iconLatitude;
+		var iconLatitudeDiff:number = this.topLatitude - iconLatitude;
 		var iconLatitudePosition:number = (iconLatitudeDiff / latitudeDiff) * this.canvasWidth;
 	
 		var iconLongitude:number = gpsCoordinates.longitude;
-		var iconLongitudeDiff: number = rightLongitude - iconLongitude;
+		var iconLongitudeDiff: number = this.rightLongitude - iconLongitude;
 		var iconLongitudePosition:number = (iconLongitudeDiff / longitudeDiff) * this.canvasHeight;
 	
 		var positions = new MapPosition();
