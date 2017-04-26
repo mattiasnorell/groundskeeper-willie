@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScheduleDay } from '../../../models/scheduleDay.model';
+import { Zone } from '../../../models/zone.model';
 import { SettingsService } from './settings.service';
 import { FirebaseListObservable } from 'angularfire2';
 
@@ -12,13 +13,14 @@ import { FirebaseListObservable } from 'angularfire2';
 
 export class SettingsComponent {
 	schedule: FirebaseListObservable<ScheduleDay[]>;
-	dayNames: string[] = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
-	
+	zones: FirebaseListObservable<Zone[]>;
+
 	constructor(private settingsService:SettingsService){
 		
 	}
 
 	ngOnInit():void{
 		this.schedule = this.settingsService.getSchedule();
+		this.zones = this.settingsService.getZones();
 	}
 }

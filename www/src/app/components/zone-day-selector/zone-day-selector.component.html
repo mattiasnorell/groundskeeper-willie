@@ -1,5 +1,11 @@
-<h1>{{zone.name}} </h1>
+<td class="table-third">{{ dayNames[day.day] }}</td>
 
-<label *ngFor="let day of weekDays; let i = index;">
-    <input type="checkbox" (click)="setDay(i)"> {{day}}
-</label>
+<td class="table-third" *ngIf="!edit">Zon {{ day.zone }}</td>
+<td class="table-third" *ngIf="edit">
+    <select (change)="updateZone($event.target.value)">
+        <option value="0">Vila</option>
+        <option *ngFor="let zone of zones | async" [value]="zone.zoneId">{{zone.name}}</option>
+    </select>
+</td>
+
+<td class="table-third text-right"><button (click)="edit = !edit">Edit</button></td>

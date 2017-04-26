@@ -21,7 +21,7 @@ export class SettingsService{
          });
     }
 
-    updateDayForZone(day:Number, zoneId: string){
+    updateDayForZone(day:string, zoneId: number){
         this.af.database.object("/schedule/" + day).update({zone: zoneId});
     }
 }
