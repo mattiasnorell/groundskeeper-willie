@@ -1,10 +1,13 @@
 <td class="table-third">{{ dayNames[day.day] }}</td>
 
-<td class="table-third" *ngIf="!edit">Zon {{ day.zone }}</td>
+<td class="table-third" *ngIf="!edit">
+    <span *ngIf="day.zone === 0">Vila</span>
+    <span *ngIf="day.zone != 0">Zon {{ day.zone }}</span>
+</td>
 <td class="table-third" *ngIf="edit">
     <select (change)="updateZone($event.target.value)">
         <option value="0">Vila</option>
-        <option *ngFor="let zone of zones | async" [value]="zone.zoneId">{{zone.name}}</option>
+        <option *ngFor="let zone of zones | async" [value]="zone.zoneId" [selected]="zone.zoneId === day.zone">{{zone.name}}</option>
     </select>
 </td>
 
