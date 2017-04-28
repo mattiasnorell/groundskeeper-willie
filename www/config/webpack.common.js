@@ -5,25 +5,17 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    globals: [],
     'vendor': './src/vendor.ts',
     'app': './src/main.ts',
     'style': './src/scss/main.scss'
   },
 
   resolve: {
-    extensions: ['.ts', '.js','.css']
+    extensions: ['.ts', '.js','.scss']
   },
 
   module: {
     rules: [
-      {
-        test: /\.css$/, 
-        loader: [ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader'] }),
-          'css-loader',
-          'sass-loader'
-      ],
-      },
       { // sass / scss loader for webpack
         test: /\.(sass|scss)$/,
         loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
@@ -58,7 +50,7 @@ module.exports = {
     ),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor']
+      name: ['polyfills', 'app', 'vendor']
     }),
 
     new HtmlWebpackPlugin({

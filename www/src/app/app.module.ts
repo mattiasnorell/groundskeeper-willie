@@ -14,20 +14,13 @@ import { MapComponent } from './components/map/map.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-export const firebaseConfig = {
-  	apiKey: "AIzaSyATn-bW-egDM0eBOR4Aaucyk56WapzrQKw",
-    authDomain: "groundskeeper-willy.firebaseapp.com",
-    databaseURL: "https://groundskeeper-willy.firebaseio.com",
-    projectId: "groundskeeper-willy",
-    storageBucket: "groundskeeper-willy.appspot.com",
-    messagingSenderId: "176535335771"
-};
+import { FirebaseConfig } from './firebase.config';
 
 @NgModule({
 	imports: [ 
 		BrowserModule, 
 		HttpModule,
-		AngularFireModule.initializeApp(firebaseConfig),
+		AngularFireModule.initializeApp(FirebaseConfig),
 		AppRoutingModule
 	],
 	declarations: [
