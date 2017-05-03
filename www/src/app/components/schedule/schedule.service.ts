@@ -5,7 +5,7 @@ import { ScheduleDay } from '../../../models/scheduleDay.model';
 import {AngularFire, FirebaseObjectObservable, FirebaseListObservable} from 'angularfire2';
 
 @Injectable()
-export class SettingsService{
+export class ScheduleService{
 
     constructor(private af:AngularFire){}
     
