@@ -7,9 +7,7 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class LogService{
     
-    constructor(private af: AngularFire){
-
-    }
+    constructor(private af: AngularFire){}
 
     getAll(): FirebaseListObservable<LogItem[]>{
         return this.af.database.list('/log', {

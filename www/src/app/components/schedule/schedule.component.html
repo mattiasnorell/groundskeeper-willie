@@ -1,4 +1,9 @@
 <h3 class="text-center">Schema</h3>
 <table style="width:100%">
-    <tr zone-day-selector *ngFor="let day of schedule | async" [day]="day"></tr>
+    <tr zone-day-selector *ngFor="let day of schedule | async" [day]="day" [isAuth]="isAuth()"></tr>
 </table>
+
+<button *ngIf="!(isAuth() | async)" (click)="login()">Logga in</button>
+<button *ngIf="isAuth() | async" (click)="logout()">Logga ut</button>
+
+<p *ngIf="afAuth.getUser()">Inloggad som: {{ afAuth.getUser().email }}</p>

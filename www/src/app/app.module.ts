@@ -3,7 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, 
+  FIREBASE_PROVIDERS,
+  AngularFire,
+  AuthMethods,
+  AuthProviders
+} from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { ZoneDaySelectorComponent } from './components/zone-day-selector/zone-day-selector.component';
@@ -16,11 +21,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FirebaseConfig } from './firebase.config';
 
+export const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
+
 @NgModule({
 	imports: [ 
 		BrowserModule, 
 		HttpModule,
-		AngularFireModule.initializeApp(FirebaseConfig),
+		AngularFireModule.initializeApp(FirebaseConfig, firebaseAuthConfig),
 		AppRoutingModule
 	],
 	declarations: [

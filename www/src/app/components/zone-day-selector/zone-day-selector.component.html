@@ -11,4 +11,4 @@
     </select>
 </td>
 
-<td class="table-third text-right"><button (click)="edit = !edit">Edit</button></td>
+<td class="table-third text-right"><button *ngIf="isAuth | async" (click)="edit = !edit">Edit</button></td>

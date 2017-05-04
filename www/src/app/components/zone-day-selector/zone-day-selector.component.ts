@@ -3,6 +3,7 @@ import { Zone } from '../../../models/zone.model';
 import { ScheduleDay } from '../../../models/scheduleDay.model';
 import { ScheduleService } from './../schedule/schedule.service';
 import { FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
 	selector:'[zone-day-selector]',
@@ -14,6 +15,7 @@ import { FirebaseListObservable } from 'angularfire2';
 export class ZoneDaySelectorComponent {
 	
 	@Input() day: ScheduleDay;
+	@Input() isAuth: Observable<any>;
 	@Output() update = new EventEmitter();
 
 	edit:boolean = false;
