@@ -38,6 +38,10 @@ groundskeeper-willy{
                     height: $footer-height;
                     line-height: $footer-height;
 
+                    &.active{
+                        background: #fff;
+                    }
+                    
                     a{
                         font-family: $font-family-serif;
                         font-size: 14px;
@@ -52,7 +56,6 @@ groundskeeper-willy{
 
                         &.active{
                             font-weight: bold;
-                            background: #fff;
                             color:lightblue;
                             border-radius: 10px;
                             padding: 5px 8px 5px 8px;
