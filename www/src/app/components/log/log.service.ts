@@ -12,7 +12,7 @@ export class LogService{
     getAll(): FirebaseListObservable<LogItem[]>{
         return this.af.database.list('/log', {
            query: {
-                limitToLast: 5,
+                limitToLast: 10,
                 orderByKey: true
            } 
         }).map((array) => array.reverse()) as FirebaseListObservable<LogItem[]>;

@@ -3,6 +3,9 @@ import { MapService } from './map.service';
 import {MapPosition } from './mapPosition.model';
 import {FirebaseObjectObservable} from 'angularfire2';
 
+const mapImage = require('../../../assets/map.png');
+const markerImage = require('../../../assets/worx.png');
+
 @Component({
 	selector:'map',
 	providers: [MapService],
@@ -13,11 +16,10 @@ import {FirebaseObjectObservable} from 'angularfire2';
 export class MapComponent implements OnInit {
 	@ViewChild("mapCanvas") mapCanvas:ElementRef; 
 
-	position: MapPosition = null;
-	service: FirebaseObjectObservable<MapPosition>;
-	private canvasWidth: number = 350;
-	private canvasHeight: number = 550;
-
+	private position: MapPosition = null;
+	private service: FirebaseObjectObservable<MapPosition>;
+	private canvasWidth: number = 325;
+	private canvasHeight: number = 500;
 	private topLatitude:number = 59.322533;
 	private bottomLatitude:number = 59.322048;
 	private leftLongitude:number = 13.456358;
@@ -64,14 +66,14 @@ export class MapComponent implements OnInit {
 				canvas.height = this.canvasHeight;
 				context.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight);
 
-				icon.src = "/src/img/worx.png";
+				icon.src = markerImage;
 			}
 		
 			icon.onload = () => {
 				context.drawImage(icon, positionInPixels.latitude, positionInPixels.longitude);
 			}
 			
-			image.src = "/src/img/map.png";
+			image.src = mapImage;
 
 		});
 

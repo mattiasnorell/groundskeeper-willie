@@ -3,6 +3,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 
+//var myImage = require(helpers.root('./src/img/map.png'));
+//var myImage2 = require("/src/img/worx.png");
+
 module.exports = {
   entry: {
     'polyfills' : './src/polyfills.ts',
@@ -36,7 +39,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file-loader?name=assets/[name].[hash].[ext]'
+        loader: 'file-loader',
+        query: {
+          name: 'assets/img/[name].[ext]'
+        }
       }
     ]
   },
