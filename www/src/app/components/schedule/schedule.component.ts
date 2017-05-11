@@ -18,7 +18,7 @@ export class ScheduleComponent implements OnInit{
 	schedule: FirebaseListObservable<ScheduleDay[]>;
 	zones: FirebaseListObservable<Zone[]>;
 
-	constructor(private scheduleService:ScheduleService, public afAuth: FirebaseAuthService){}
+	constructor(private scheduleService:ScheduleService, public afAuthService: FirebaseAuthService){}
 
 	ngOnInit():void{
 		this.schedule = this.scheduleService.getSchedule();
@@ -26,14 +26,14 @@ export class ScheduleComponent implements OnInit{
 	}
 
 	isAuth(){
-		return this.afAuth.isAuthenticated();
+		return this.afAuthService.isAuthenticated();
 	}
 
 	login() {
-		this.afAuth.login("mattias.norell@gmail.com", "abc123");
+		this.afAuthService.login("mattias.norell@gmail.com", "abc123");
 	}
 
 	logout() {
-		this.afAuth.logout();
+		this.afAuthService.logout();
 	}
 }

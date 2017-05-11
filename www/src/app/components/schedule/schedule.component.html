@@ -8,4 +8,4 @@
 <button class="btn full-width" *ngIf="!(isAuth() | async)" (click)="login()">Logga in</button>
 <button class="btn full-width" *ngIf="isAuth() | async" (click)="logout()">Logga ut</button>
 
-<p *ngIf="afAuth.getUser()">Inloggad som: {{ afAuth.getUser().email }}</p>
+<p *ngIf="afAuthService.getUser()">Inloggad som: {{ afAuthService.getUser().email }}</p>
