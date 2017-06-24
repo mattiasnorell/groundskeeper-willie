@@ -9,11 +9,11 @@
 ### Software, Raspberry
 * Python 3
 * rpi.gpio
+* pyrebase
 
 ### Software, Development
-* Node.js
-* Angular 2
-* AngularFire 2
+* Angular
+* AngularFire
 * TypeScript 2.1
 * Webpack 2
 
