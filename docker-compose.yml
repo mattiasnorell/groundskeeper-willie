@@ -1,0 +1,28 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      MONGODB_URI: "mongodb://192.168.0.81:27017"
+      DATABASE_NAME: groundskeeper
+      MQTT_HOST: 192.168.0.81
+      MQTT_PORT: "1883"
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - groundskeeper
+
+  frontend:
+    build: ./frontend
+    environment:
+      BACKEND_URL: "http://backend:8000"
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - groundskeeper
+
+networks:
+  groundskeeper:
+    driver: bridge
